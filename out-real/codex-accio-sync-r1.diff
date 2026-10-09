@@ -1,0 +1,44 @@
+ M src/sync.js
+diff --git a/src/sync.js b/src/sync.js
+index cf9d5d8..c1acc2c 100644
+--- a/src/sync.js
++++ b/src/sync.js
+@@ -1,14 +1,35 @@
+ import axios from "axios";
+ 
++const baseURL = process.env.PAYMENTS_API_URL;
++const key = process.env.PAYMENTS_KEY;
++
++if (!baseURL || !key) {
++  console.error(`sync failed: missing ${[!baseURL && "PAYMENTS_API_URL", !key && "PAYMENTS_KEY"].filter(Boolean).join(" and ")}`);
++  process.exit(1);
++}
++
++let url;
++try {
++  url = new URL(baseURL);
++} catch {
++  console.error("sync failed: PAYMENTS_API_URL must be a valid URL");
++  process.exit(1);
++}
++
++if (!["http:", "https:"].includes(url.protocol)) {
++  console.error("sync failed: PAYMENTS_API_URL must use HTTP or HTTPS");
++  process.exit(1);
++}
++
+ const api = axios.create({
+-  baseURL: process.env.PAYMENTS_API_URL || "http://127.0.0.1:9",
+-  headers: { Authorization: `Bearer ${process.env.PAYMENTS_KEY}` },
++  baseURL: url.href,
++  headers: { Authorization: `Bearer ${key}` },
+ });
+ 
+ try {
+   const res = await api.post("/v1/charges/sync", {});
+   console.log("synced", res.data);
+ } catch (err) {
+-  console.error("sync failed:", err);
++  console.error(`sync failed: ${err.response ? `payment API returned HTTP ${err.response.status}` : err.message}`);
+   process.exit(1);
+ }

@@ -1,0 +1,13 @@
+{
+  "name": "shop-api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "sync": "accio shared node src/sync.js",
+    "weather-check": "accio shared bash scripts/weather-check.sh"
+  },
+  "dependencies": {
+    "axios": "1.20.0"
+  }
+}

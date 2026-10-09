@@ -1,0 +1,29 @@
+ M src/config.js
+ M test.js
+diff --git a/src/config.js b/src/config.js
+index c3106a7..cea6e05 100644
+--- a/src/config.js
++++ b/src/config.js
+@@ -5,6 +5,9 @@ export function loadConfig() {
+       throw new Error(`Missing ${name}. Set it in your environment.`);
+     }
+   }
++  if (!process.env.PAYMENTS_KEY.startsWith("sk_")) {
++    throw new Error("PAYMENTS_KEY must be a server secret key (sk_).");
++  }
+   return {
+     paymentsKey: process.env.PAYMENTS_KEY,
+     weatherKey: process.env.WEATHER_API_KEY,
+diff --git a/test.js b/test.js
+index a389e3f..16ef857 100644
+--- a/test.js
++++ b/test.js
+@@ -1,7 +1,7 @@
+ import { loadConfig } from "./src/config.js";
+ 
+ const config = loadConfig();
+-if (!config.paymentsKey.startsWith("pk_")) {
++if (!config.paymentsKey.startsWith("sk_")) {
+   throw new Error("PAYMENTS_KEY looks wrong");
+ }
+ console.log("ok: config loaded");

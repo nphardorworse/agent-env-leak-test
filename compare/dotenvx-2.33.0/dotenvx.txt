@@ -1,0 +1,7 @@
+dotenvx 2.33.0
+plain   start    keys in output: 3
+plain   weather  keys in output: 1
+plain   doctor   keys in output: 3
+redact  start    keys in output: 0
+redact  weather  keys in output: 0
+redact  doctor   keys in output: 0

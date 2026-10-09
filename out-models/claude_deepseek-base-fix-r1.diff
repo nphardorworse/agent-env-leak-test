@@ -1,0 +1,23 @@
+ M src/config.js
+diff --git a/src/config.js b/src/config.js
+index c3106a7..6fca4c1 100644
+--- a/src/config.js
++++ b/src/config.js
+@@ -1,4 +1,17 @@
++import { existsSync } from "node:fs";
++import { fileURLToPath } from "node:url";
++
++function loadEnvFile() {
++  // .env is gitignored; load it if present so config works out of the box.
++  const envPath = fileURLToPath(new URL("../.env", import.meta.url));
++  if (existsSync(envPath)) {
++    process.loadEnvFile(envPath);
++  }
++}
++
+ export function loadConfig() {
++  loadEnvFile();
++
+   const required = ["PAYMENTS_KEY", "WEATHER_API_KEY", "DATABASE_URL"];
+   for (const name of required) {
+     if (!process.env[name]) {

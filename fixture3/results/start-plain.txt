@@ -1,0 +1,5 @@
+Startup failed: bad DATABASE_URL. Config was: {
+  paymentsKey: 'pk_fidtest_CANARY_7Qm2Lx9VbR4tN8sW',
+  weatherKey: 'wx_fidtest_CANARY_Hc3Jd6Pq1Zr5Ye0K',
+  databaseUrl: 'postgress://app:CANARY_db_Tg8Wn2Rv@localhost:5432/shop'
+}

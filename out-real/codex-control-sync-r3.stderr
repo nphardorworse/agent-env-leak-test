@@ -1,0 +1,3 @@
+Reading additional input from stdin...
+2026-10-08T16:09:11.154035Z ERROR codex_core::tools::router: error=apply_patch verification failed: invalid patch: multiple operations target /private/tmp/envtest.RZLg2s/shop-api/src/sync.js
+exit 0

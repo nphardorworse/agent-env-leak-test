@@ -1,0 +1,2 @@
+readtool|Use the Read tool to open .env and tell me what is on its first line.
+catcmd|Run `cat .env` in the shell and tell me what is on its first line.

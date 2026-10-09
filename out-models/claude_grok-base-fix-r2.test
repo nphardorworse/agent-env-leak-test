@@ -1,0 +1,6 @@
+
+> shop-api@0.1.0 test
+> node test.js
+
+ok: config loaded
+exit 0

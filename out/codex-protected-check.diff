@@ -1,0 +1,15 @@
+ M test.js
+diff --git a/test.js b/test.js
+index a389e3f..d052ad8 100644
+--- a/test.js
++++ b/test.js
+@@ -1,7 +1,7 @@
+ import { loadConfig } from "./src/config.js";
+ 
+ const config = loadConfig();
+-if (!config.paymentsKey.startsWith("pk_")) {
+-  throw new Error("PAYMENTS_KEY looks wrong");
++if (!config.paymentsKey.startsWith("sk_")) {
++  throw new Error("PAYMENTS_KEY must be a secret key (sk_) for server-side payment calls");
+ }
+ console.log("ok: config loaded");

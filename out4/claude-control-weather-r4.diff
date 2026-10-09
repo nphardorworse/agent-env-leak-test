@@ -1,0 +1,12 @@
+ M src/weather.js
+diff --git a/src/weather.js b/src/weather.js
+index 5898fbd..b12d720 100644
+--- a/src/weather.js
++++ b/src/weather.js
+@@ -1,5 +1,5 @@
+ const url = `https://api.weather.invalid/v1/today?city=Tallinn&key=${process.env.WEATHER_API_KEY}`;
+-console.log("GET", url);
++console.log("GET", url.replace(/key=[^&]*/, "key=<redacted>"));
+ try {
+   const res = await fetch(url);
+   console.log(await res.json());

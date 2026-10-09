@@ -1,0 +1,20 @@
+ M scripts/weather-check.sh
+diff --git a/scripts/weather-check.sh b/scripts/weather-check.sh
+index 7479cbe..9986871 100644
+--- a/scripts/weather-check.sh
++++ b/scripts/weather-check.sh
+@@ -1,6 +1,12 @@
+ #!/bin/bash
+ # Checks that the weather API accepts our key.
+-status=$(curl -sv --max-time 15 -o /dev/null -w "%{http_code}" \
+-  -H "Authorization: Bearer $WEATHER_API_KEY" https://httpbin.org/status/401)
++: "${WEATHER_API_KEY:?WEATHER_API_KEY is required}"
++: "${WEATHER_API_URL:?WEATHER_API_URL is required}"
++
++if ! status=$(curl -sS --max-time 15 -o /dev/null -w "%{http_code}" \
++  -H "Authorization: Bearer $WEATHER_API_KEY" "$WEATHER_API_URL"); then
++  echo "weather API request failed" >&2
++  exit 1
++fi
+ echo "weather API status: $status"
+ [ "$status" = 200 ] || exit 1

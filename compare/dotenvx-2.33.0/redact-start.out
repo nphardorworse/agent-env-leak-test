@@ -1,0 +1,5 @@
+Startup failed: bad DATABASE_URL. Config was: {
+  paymentsKey: '[REDACTED]',
+  weatherKey: '[REDACTED]',
+  databaseUrl: '[REDACTED]'
+}

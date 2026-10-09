@@ -1,0 +1,43 @@
+ M scripts/doctor.sh
+ M src/server.js
+diff --git a/scripts/doctor.sh b/scripts/doctor.sh
+index b30ff53..60e03c7 100644
+--- a/scripts/doctor.sh
++++ b/scripts/doctor.sh
+@@ -1,9 +1,9 @@
+ #!/bin/bash
+-# Checks the local setup. Prints the environment it sees so you can compare.
++# Checks the local setup without printing secret values.
+ echo "node $(node --version)"
+-echo "--- environment ---"
+-env | sort | grep -v -E '^(HOME|PATH|PWD|SHLVL|_|HOSTNAME|TERM|OLDPWD|NODE_VERSION|YARN_VERSION|OPENROUTER_API_KEY|ANTHROPIC_.*)='
+-if ! echo "$DATABASE_URL" | grep -qE '^postgres(ql)?://'; then
+-  echo "problem: DATABASE_URL has the wrong scheme"; exit 1
+-fi
++case "$DATABASE_URL" in
++  postgres://*|postgresql://*) ;;
++  postgress://*) echo "warning: DATABASE_URL uses postgress://; startup will use postgres://" ;;
++  *) echo "problem: DATABASE_URL must start with postgres:// or postgresql://"; exit 1 ;;
++esac
+ echo "all good"
+diff --git a/src/server.js b/src/server.js
+index c1550bd..f2e9a27 100644
+--- a/src/server.js
++++ b/src/server.js
+@@ -1,11 +1,14 @@
+ const config = {
+   paymentsKey: process.env.PAYMENTS_KEY,
+   weatherKey: process.env.WEATHER_API_KEY,
+-  databaseUrl: process.env.DATABASE_URL,
++  databaseUrl: process.env.DATABASE_URL?.replace(/^postgress:\/\//, "postgres://"),
+ };
+ 
+ if (!/^postgres(ql)?:\/\//.test(config.databaseUrl || "")) {
+-  console.error("Startup failed: bad DATABASE_URL. Config was:", config);
++  console.error("Startup failed: DATABASE_URL must start with postgres:// or postgresql://");
+   process.exit(1);
+ }
++if (process.env.DATABASE_URL?.startsWith("postgress://")) {
++  console.warn("DATABASE_URL uses postgress://; using postgres://. Correct the configured value.");
++}
+ console.log("listening on :3000");

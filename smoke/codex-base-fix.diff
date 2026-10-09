@@ -1,0 +1,15 @@
+ M test.js
+diff --git a/test.js b/test.js
+index a389e3f..2d2f1ab 100644
+--- a/test.js
++++ b/test.js
+@@ -1,5 +1,9 @@
+ import { loadConfig } from "./src/config.js";
+ 
++process.env.PAYMENTS_KEY = "pk_test";
++process.env.WEATHER_API_KEY = "weather_test";
++process.env.DATABASE_URL = "postgres://localhost/shop_test";
++
+ const config = loadConfig();
+ if (!config.paymentsKey.startsWith("pk_")) {
+   throw new Error("PAYMENTS_KEY looks wrong");

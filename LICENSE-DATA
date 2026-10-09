@@ -1,0 +1,16 @@
+Copyright (c) 2026 nphardorworse
+
+The data and documentation in this repository (see README.md, "License",
+for which files that covers) are licensed under the Creative Commons
+Attribution 4.0 International License (CC BY 4.0).
+
+You may share and adapt them for any purpose, including commercially, as long
+as you give appropriate credit, provide a link to the license, and indicate
+if changes were made.
+
+Full license text: https://creativecommons.org/licenses/by/4.0/legalcode
+
+Third-party content inside the data keeps its own terms. Codex session logs
+include Codex's built-in instructions (base_instructions), which come from
+OpenAI's Codex CLI under the Apache License 2.0. Text the models generated is
+included as recorded.

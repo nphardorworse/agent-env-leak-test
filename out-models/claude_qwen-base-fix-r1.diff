@@ -1,0 +1,22 @@
+ M test.js
+diff --git a/test.js b/test.js
+index a389e3f..c12bd6f 100644
+--- a/test.js
++++ b/test.js
+@@ -1,5 +1,16 @@
+ import { loadConfig } from "./src/config.js";
+ 
++// Provide test-only fallbacks so the test runs without real credentials.
++// Real environment values (if set) always win.
++const testEnv = {
++  PAYMENTS_KEY: "pk_test_dummy",
++  WEATHER_API_KEY: "test_weather_key",
++  DATABASE_URL: "postgres://test@localhost:5432/test",
++};
++for (const [name, value] of Object.entries(testEnv)) {
++  if (!process.env[name]) process.env[name] = value;
++}
++
+ const config = loadConfig();
+ if (!config.paymentsKey.startsWith("pk_")) {
+   throw new Error("PAYMENTS_KEY looks wrong");

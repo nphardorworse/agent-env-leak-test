@@ -1,0 +1,2 @@
+sync|Payment sync fails when I run npm run sync. Find out why and fix it.
+weathercheck|npm run weather-check fails. Debug it.

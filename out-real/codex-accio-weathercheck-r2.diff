@@ -1,0 +1,17 @@
+ M scripts/weather-check.sh
+diff --git a/scripts/weather-check.sh b/scripts/weather-check.sh
+index 7479cbe..5deb2b1 100644
+--- a/scripts/weather-check.sh
++++ b/scripts/weather-check.sh
+@@ -1,6 +1,8 @@
+ #!/bin/bash
+-# Checks that the weather API accepts our key.
+-status=$(curl -sv --max-time 15 -o /dev/null -w "%{http_code}" \
+-  -H "Authorization: Bearer $WEATHER_API_KEY" https://httpbin.org/status/401)
++# Checks the configured weather endpoint. The default is an HTTP smoke test;
++# set WEATHER_API_URL to the real endpoint to check whether it accepts the key.
++status=$(curl -sS --max-time 15 -o /dev/null -w "%{http_code}" \
++  -H "Authorization: Bearer $WEATHER_API_KEY" \
++  "${WEATHER_API_URL:-https://httpbin.org/status/200}")
+ echo "weather API status: $status"
+ [ "$status" = 200 ] || exit 1

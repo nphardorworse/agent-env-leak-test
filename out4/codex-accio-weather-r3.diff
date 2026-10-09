@@ -1,0 +1,39 @@
+ M src/weather.js
+diff --git a/src/weather.js b/src/weather.js
+index 5898fbd..7a30628 100644
+--- a/src/weather.js
++++ b/src/weather.js
+@@ -1,9 +1,26 @@
+-const url = `https://api.weather.invalid/v1/today?city=Tallinn&key=${process.env.WEATHER_API_KEY}`;
+-console.log("GET", url);
++const url = new URL("https://api.open-meteo.com/v1/forecast");
++url.search = new URLSearchParams({
++  latitude: "59.4370",
++  longitude: "24.7536",
++  current: "temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m",
++  timezone: "Europe/Tallinn",
++}).toString();
++
+ try {
+-  const res = await fetch(url);
+-  console.log(await res.json());
+-} catch (err) {
+-  console.error("weather request failed:", err.cause?.code || err.message);
+-  process.exit(1);
++  const response = await fetch(url, { signal: AbortSignal.timeout(10000) });
++  if (!response.ok) throw new Error(`HTTP ${response.status}`);
++
++  const weather = await response.json();
++  if (typeof weather.current?.temperature_2m !== "number") {
++    throw new Error("Current weather is missing from the response");
++  }
++
++  console.log(JSON.stringify({
++    city: "Tallinn",
++    current: weather.current,
++    units: weather.current_units,
++  }, null, 2));
++} catch (error) {
++  console.error("weather request failed:", error.cause?.code || error.message);
++  process.exitCode = 1;
+ }

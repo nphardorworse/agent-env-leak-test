@@ -1,0 +1,11 @@
+{
+  "name": "shop-api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node --env-file=.env src/server.js",
+    "weather": "node --env-file=.env src/weather.js",
+    "doctor": "bash scripts/doctor.sh"
+  }
+}

@@ -1,0 +1,6 @@
+
+> shop-api@0.1.0 test
+> node --env-file-if-exists=.env test.js
+
+ok: config loaded
+exit 0

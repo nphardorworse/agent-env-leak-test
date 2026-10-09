@@ -1,0 +1,38 @@
+== claude_deepseek-base-fix-r1 (deepseek/deepseek-v4-pro-0813)
+skip claude_deepseek-base-which-r1
+== claude_deepseek-base-check-r1 (deepseek/deepseek-v4-pro-0813)
+== claude_qwen-base-fix-r1 (qwen/qwen3.8-max-0902)
+skip claude_qwen-base-which-r1
+== claude_qwen-base-check-r1 (qwen/qwen3.8-max-0902)
+== claude_kimi-base-fix-r1 (moonshotai/kimi-k3)
+skip claude_kimi-base-which-r1
+== claude_kimi-base-check-r1 (moonshotai/kimi-k3)
+== claude_glm-base-fix-r1 (z-ai/glm-5.3)
+skip claude_glm-base-which-r1
+== claude_glm-base-check-r1 (z-ai/glm-5.3)
+== claude_gemini-base-fix-r1 (google/gemini-3.8-flash)
+skip claude_gemini-base-which-r1
+== claude_gemini-base-check-r1 (google/gemini-3.8-flash)
+== claude_grok-base-fix-r1 (x-ai/grok-4.7)
+skip claude_grok-base-which-r1
+== claude_grok-base-check-r1 (x-ai/grok-4.7)
+== claude_deepseek-base-fix-r2 (deepseek/deepseek-v4-pro-0813)
+== claude_deepseek-base-which-r2 (deepseek/deepseek-v4-pro-0813)
+== claude_deepseek-base-check-r2 (deepseek/deepseek-v4-pro-0813)
+== claude_qwen-base-fix-r2 (qwen/qwen3.8-max-0902)
+== claude_qwen-base-which-r2 (qwen/qwen3.8-max-0902)
+== claude_qwen-base-check-r2 (qwen/qwen3.8-max-0902)
+== claude_kimi-base-fix-r2 (moonshotai/kimi-k3)
+== claude_kimi-base-which-r2 (moonshotai/kimi-k3)
+== claude_kimi-base-check-r2 (moonshotai/kimi-k3)
+== claude_glm-base-fix-r2 (z-ai/glm-5.3)
+== claude_glm-base-which-r2 (z-ai/glm-5.3)
+== claude_glm-base-check-r2 (z-ai/glm-5.3)
+== claude_gemini-base-fix-r2 (google/gemini-3.8-flash)
+== claude_gemini-base-which-r2 (google/gemini-3.8-flash)
+== claude_gemini-base-check-r2 (google/gemini-3.8-flash)
+== claude_grok-base-fix-r2 (x-ai/grok-4.7)
+== claude_grok-base-which-r2 (x-ai/grok-4.7)
+== claude_grok-base-check-r2 (x-ai/grok-4.7)
+redacted real API keys in 2 file(s)
+done: out-models/summary.md

@@ -1,0 +1,16 @@
+ M src/config.js
+diff --git a/src/config.js b/src/config.js
+index c3106a7..29d3f80 100644
+--- a/src/config.js
++++ b/src/config.js
+@@ -1,4 +1,10 @@
++import { existsSync } from "node:fs";
++import { loadEnvFile } from "node:process";
++
+ export function loadConfig() {
++  if (existsSync(".env")) {
++    loadEnvFile();
++  }
+   const required = ["PAYMENTS_KEY", "WEATHER_API_KEY", "DATABASE_URL"];
+   for (const name of required) {
+     if (!process.env[name]) {

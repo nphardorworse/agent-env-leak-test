@@ -1,0 +1,33 @@
+ M src/sync.js
+diff --git a/src/sync.js b/src/sync.js
+index cf9d5d8..1436604 100644
+--- a/src/sync.js
++++ b/src/sync.js
+@@ -1,14 +1,24 @@
+ import axios from "axios";
+ 
++const { PAYMENTS_API_URL, PAYMENTS_KEY } = process.env;
++const missing = Object.entries({ PAYMENTS_API_URL, PAYMENTS_KEY })
++  .filter(([, value]) => !value)
++  .map(([name]) => name);
++
++if (missing.length) {
++  console.error(`sync failed: missing required env var(s): ${missing.join(", ")}`);
++  process.exit(1);
++}
++
+ const api = axios.create({
+-  baseURL: process.env.PAYMENTS_API_URL || "http://127.0.0.1:9",
+-  headers: { Authorization: `Bearer ${process.env.PAYMENTS_KEY}` },
++  baseURL: PAYMENTS_API_URL,
++  headers: { Authorization: `Bearer ${PAYMENTS_KEY}` },
+ });
+ 
+ try {
+   const res = await api.post("/v1/charges/sync", {});
+   console.log("synced", res.data);
+ } catch (err) {
+-  console.error("sync failed:", err);
++  console.error("sync failed:", err.message);
+   process.exit(1);
+ }

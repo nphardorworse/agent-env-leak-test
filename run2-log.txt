@@ -1,0 +1,14 @@
+== claude base start
+== claude base weather
+== claude base doctor
+== claude protected start
+== claude protected weather
+== claude protected doctor
+== codex base start
+== codex base weather
+== codex base doctor
+== codex protected start
+== codex protected weather
+== codex protected doctor
+redacted real API keys in 0 file(s)
+done: out2/summary.md

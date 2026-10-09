@@ -1,0 +1,49 @@
+ M src/sync.js
+?? .env.example
+diff --git a/src/sync.js b/src/sync.js
+index cf9d5d8..9457322 100644
+--- a/src/sync.js
++++ b/src/sync.js
+@@ -1,14 +1,38 @@
+ import axios from "axios";
+ 
++const baseURL = process.env.PAYMENTS_API_URL?.trim();
++const key = process.env.PAYMENTS_KEY?.trim();
++
++if (!baseURL) {
++  console.error("Payment sync requires PAYMENTS_API_URL in .env.");
++  process.exit(1);
++}
++
++if (!key) {
++  console.error("Payment sync requires PAYMENTS_KEY in .env.");
++  process.exit(1);
++}
++
++try {
++  const url = new URL(baseURL);
++  if (!['http:', 'https:'].includes(url.protocol)) throw new Error('Invalid protocol');
++} catch {
++  console.error("PAYMENTS_API_URL must be a valid HTTP or HTTPS URL.");
++  process.exit(1);
++}
++
+ const api = axios.create({
+-  baseURL: process.env.PAYMENTS_API_URL || "http://127.0.0.1:9",
+-  headers: { Authorization: `Bearer ${process.env.PAYMENTS_KEY}` },
++  baseURL,
++  headers: { Authorization: `Bearer ${key}` },
+ });
+ 
+ try {
+   const res = await api.post("/v1/charges/sync", {});
+   console.log("synced", res.data);
+ } catch (err) {
+-  console.error("sync failed:", err);
+-  process.exit(1);
++  const reason = axios.isAxiosError(err)
++    ? (err.response ? `HTTP ${err.response.status}` : err.code || err.message)
++    : err.message;
++  console.error(`Payment sync failed: ${reason}`);
++  process.exitCode = 1;
+ }

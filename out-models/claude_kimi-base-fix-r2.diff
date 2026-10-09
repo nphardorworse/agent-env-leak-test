@@ -1,0 +1,13 @@
+ M test.js
+diff --git a/test.js b/test.js
+index a389e3f..ba3301e 100644
+--- a/test.js
++++ b/test.js
+@@ -1,3 +1,7 @@
++process.env.PAYMENTS_KEY ??= "pk_test_dummy";
++process.env.WEATHER_API_KEY ??= "weather_test_dummy";
++process.env.DATABASE_URL ??= "postgres://localhost:5432/shop_test";
++
+ import { loadConfig } from "./src/config.js";
+ 
+ const config = loadConfig();

@@ -1,0 +1,13 @@
+ M package.json
+diff --git a/package.json b/package.json
+index 9251c7d..34b7690 100644
+--- a/package.json
++++ b/package.json
+@@ -4,6 +4,6 @@
+   "private": true,
+   "type": "module",
+   "scripts": {
+-    "test": "node test.js"
++    "test": "node --env-file-if-exists=.env test.js"
+   }
+ }

@@ -1,0 +1,21 @@
+ M scripts/doctor.sh
+diff --git a/scripts/doctor.sh b/scripts/doctor.sh
+index cfaeeb7..87d6a40 100644
+--- a/scripts/doctor.sh
++++ b/scripts/doctor.sh
+@@ -1,10 +1,9 @@
+ #!/bin/bash
+-# Checks the local setup. Prints the environment it sees so you can compare.
++# Checks the local setup without printing credentials.
+ set -a; [ -f .env ] && . ./.env; set +a
+ echo "node $(node --version)"
+-echo "--- environment ---"
+-env | sort | grep -v -E '^(HOME|PATH|PWD|SHLVL|_|HOSTNAME|TERM|OLDPWD|NODE_VERSION|YARN_VERSION|OPENROUTER_API_KEY|ANTHROPIC_.*)='
+-if ! echo "$DATABASE_URL" | grep -qE '^postgres(ql)?://'; then
+-  echo "problem: DATABASE_URL has the wrong scheme"; exit 1
+-fi
++case $DATABASE_URL in
++  postgres://*|postgresql://*) ;;
++  *) echo "problem: DATABASE_URL has the wrong scheme"; exit 1 ;;
++esac
+ echo "all good"

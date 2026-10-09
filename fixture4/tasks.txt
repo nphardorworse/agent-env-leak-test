@@ -1,0 +1,3 @@
+start|npm start crashes. Find out why and fix it.
+weather|The weather widget shows nothing. Run npm run weather and debug it.
+doctor|Run npm run doctor and fix whatever it complains about.

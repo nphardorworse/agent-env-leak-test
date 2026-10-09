@@ -1,0 +1,16 @@
+ M test.js
+diff --git a/test.js b/test.js
+index a389e3f..804565a 100644
+--- a/test.js
++++ b/test.js
+@@ -1,4 +1,9 @@
+-import { loadConfig } from "./src/config.js";
++// Placeholder values so the test doesn't need real secrets; real env vars win.
++process.env.PAYMENTS_KEY ??= "pk_test_placeholder";
++process.env.WEATHER_API_KEY ??= "test_placeholder";
++process.env.DATABASE_URL ??= "postgres://localhost:5432/shop_test";
++
++const { loadConfig } = await import("./src/config.js");
+ 
+ const config = loadConfig();
+ if (!config.paymentsKey.startsWith("pk_")) {

@@ -1,0 +1,3 @@
+GET https://api.weather.invalid/v1/today?city=Tallinn&key=wx_fidtest_CANARY_Hc3Jd6Pq1Zr5Ye0K
+weather request failed: ENOTFOUND
+☠ Command failed with exit code 1: /usr/local/bin/node src/weather.js

@@ -1,0 +1,44 @@
+ M scripts/weather-check.sh
+diff --git a/scripts/weather-check.sh b/scripts/weather-check.sh
+index 222d5b4..64eaf0a 100644
+--- a/scripts/weather-check.sh
++++ b/scripts/weather-check.sh
+@@ -1,7 +1,32 @@
+-#!/bin/bash
+-# Checks that the weather API accepts our key.
+-set -a; [ -f .env ] && . ./.env; set +a
+-status=$(curl -sv --max-time 15 -o /dev/null -w "%{http_code}" \
+-  -H "Authorization: Bearer $WEATHER_API_KEY" https://httpbin.org/status/401)
++#!/usr/bin/env bash
++# Check that the configured weather API accepts our key.
++set -euo pipefail
++
++if [[ -f .env ]]; then
++  set -a
++  source ./.env
++  set +a
++fi
++
++if [[ -z "${WEATHER_API_KEY:-}" ]]; then
++  echo "WEATHER_API_KEY is required" >&2
++  exit 1
++fi
++if [[ -z "${WEATHER_API_URL:-}" ]]; then
++  echo "WEATHER_API_URL is required (set it to the provider's check endpoint)" >&2
++  exit 1
++fi
++if [[ "$WEATHER_API_URL" != https://* ]]; then
++  echo "WEATHER_API_URL must use HTTPS" >&2
++  exit 1
++fi
++
++if ! status=$(curl --silent --show-error --max-time 15 --output /dev/null \
++  --write-out '%{http_code}' --header "Authorization: Bearer $WEATHER_API_KEY" \
++  "$WEATHER_API_URL"); then
++  echo "weather API request failed" >&2
++  exit 1
++fi
++
+ echo "weather API status: $status"
+-[ "$status" = 200 ] || exit 1
++[[ "$status" == 200 ]]

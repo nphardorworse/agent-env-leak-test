@@ -1,0 +1,32 @@
+node v22.23.3
+--- environment ---
+CLAUDECODE=1
+COLOR=0
+DATABASE_URL=[REDACTED]
+EDITOR=vi
+INIT_CWD=/tmp/app
+MODES=plain redact
+NODE=/usr/local/bin/node
+PAYMENTS_KEY=[REDACTED]
+VERSION=2.33.0
+WEATHER_API_KEY=[REDACTED]
+npm_command=exec
+npm_config_cache=/home/node/.npm
+npm_config_global_prefix=/usr/local
+npm_config_globalconfig=/usr/local/etc/npmrc
+npm_config_init_module=/home/node/.npm-init.js
+npm_config_local_prefix=/tmp/app
+npm_config_node_gyp=/usr/local/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js
+npm_config_noproxy=
+npm_config_npm_version=10.9.9
+npm_config_prefix=/usr/local
+npm_config_user_agent=npm/10.9.9 node/v22.23.3 linux arm64 workspaces/false
+npm_config_userconfig=/home/node/.npmrc
+npm_execpath=/usr/local/lib/node_modules/npm/bin/npm-cli.js
+npm_lifecycle_event=npx
+npm_lifecycle_script=dotenvx
+npm_node_execpath=/usr/local/bin/node
+npm_package_json=/tmp/app/package.json
+npm_package_name=shop-api
+npm_package_version=0.1.0
+problem: DATABASE_URL has the wrong scheme

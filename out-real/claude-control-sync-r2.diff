@@ -1,0 +1,22 @@
+ M src/sync.js
+diff --git a/src/sync.js b/src/sync.js
+index cf9d5d8..6706ff6 100644
+--- a/src/sync.js
++++ b/src/sync.js
+@@ -1,8 +1,14 @@
+ import axios from "axios";
+ 
++const { PAYMENTS_API_URL, PAYMENTS_KEY } = process.env;
++if (!PAYMENTS_API_URL || !PAYMENTS_KEY) {
++  console.error("sync failed: PAYMENTS_API_URL and PAYMENTS_KEY must be set in .env");
++  process.exit(1);
++}
++
+ const api = axios.create({
+-  baseURL: process.env.PAYMENTS_API_URL || "http://127.0.0.1:9",
+-  headers: { Authorization: `Bearer ${process.env.PAYMENTS_KEY}` },
++  baseURL: PAYMENTS_API_URL,
++  headers: { Authorization: `Bearer ${PAYMENTS_KEY}` },
+ });
+ 
+ try {

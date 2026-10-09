@@ -1,0 +1,6 @@
+Startup failed: bad DATABASE_URL. Config was: {
+  paymentsKey: '<concealed by fidelius: PAYMENTS_KEY>',
+  weatherKey: '<concealed by fidelius: WEATHER_API_KEY>',
+  databaseUrl: '<concealed by fidelius: DATABASE_URL>'
+}
+accio: concealed secret values in this output (agent detected: CODEX_THREAD_ID). Use --no-mask for raw output.

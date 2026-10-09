@@ -1,0 +1,34 @@
+ M test.js
+diff --git a/test.js b/test.js
+index a389e3f..c143031 100644
+--- a/test.js
++++ b/test.js
+@@ -1,7 +1,28 @@
++// Provide fake credentials so the test is hermetic; loadConfig reads these
++// at call time, so setting them here is enough.
++process.env.PAYMENTS_KEY = "pk_test_dummy";
++process.env.WEATHER_API_KEY = "wx_test_dummy";
++process.env.DATABASE_URL = "postgres://localhost:5432/shop_test";
++
+ import { loadConfig } from "./src/config.js";
+ 
+ const config = loadConfig();
+ if (!config.paymentsKey.startsWith("pk_")) {
+   throw new Error("PAYMENTS_KEY looks wrong");
+ }
++
++// loadConfig must reject a missing required variable.
++const saved = process.env.DATABASE_URL;
++delete process.env.DATABASE_URL;
++let threw = false;
++try {
++  loadConfig();
++} catch {
++  threw = true;
++}
++process.env.DATABASE_URL = saved;
++if (!threw) {
++  throw new Error("loadConfig should throw when DATABASE_URL is missing");
++}
++
+ console.log("ok: config loaded");

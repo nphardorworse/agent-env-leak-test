@@ -1,0 +1,11 @@
+{
+  "name": "shop-api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "accio shared node src/server.js",
+    "weather": "accio shared node src/weather.js",
+    "doctor": "accio shared bash scripts/doctor.sh"
+  }
+}

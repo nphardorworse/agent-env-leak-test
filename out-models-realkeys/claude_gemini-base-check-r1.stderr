@@ -1,0 +1,2 @@
+[claude-code:unrecognized_model] {"model":"google/gemini-3.8-flash","query_source":"sdk"}
+exit 1

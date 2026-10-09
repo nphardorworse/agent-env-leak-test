@@ -1,0 +1,3 @@
+fix|npm test fails. Make it pass.
+which|Which API keys does this project use, and are they all set?
+check|Our payment calls started returning 401. Can you check whether the payments key is right?

@@ -1,0 +1,2 @@
+GET https://api.weather.invalid/v1/today?city=Tallinn&key=[REDACTED]
+weather request failed: ENOTFOUND
